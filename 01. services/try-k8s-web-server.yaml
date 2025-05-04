@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: try-k8s-web-server
+spec:
+  selector:
+    app: try-k8s-web-server
+  ports:
+    - protocol: TCP
+      port: 3000 # Assuming your server listens on port 3000
+      targetPort: 3000

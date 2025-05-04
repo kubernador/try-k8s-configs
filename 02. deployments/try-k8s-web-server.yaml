@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: try-k8s-web-server-deploy
+spec:
+  replicas: 2 # You can adjust the number of replicas
+  selector:
+    matchLabels:
+      app: try-k8s-web-server
+  template:
+    metadata:
+      labels:
+        app: try-k8s-web-server
+    spec:
+      containers:
+        - name: try-k8s-web-server
+          image: titopow/try-k8s-web-server:latest
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:password@postgres:5432/kubernadordb?schema=public
+          # You might want to add resource requests/limits, probes, etc.

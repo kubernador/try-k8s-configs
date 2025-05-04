@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: try-k8s-web-client-deploy
+spec:
+  replicas: 1 # You can adjust the number of replicas
+  selector:
+    matchLabels:
+      app: try-k8s-web-client
+  template:
+    metadata:
+      labels:
+        app: try-k8s-web-client
+    spec:
+      containers:
+        - name: try-k8s-web-client
+          image: titopow/try-k8s-web-client:latest
+          env:
+            - name: SERVER_HOST
+              value: try-k8s-web-server:3000
+          ports:
+            - containerPort: 80
+          # You might want to add resource requests/limits, probes, etc.
